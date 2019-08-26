@@ -1,10 +1,9 @@
 import React from "react";
 
-
 function Cards(props) {
     return (
-        <div style={{justifyContent:'center', alignItems: 'center', padding: 20, display: 'inline-block', width: '25%', textAlign: 'center'}}>
-            <img alt={props.id} src={props.url} />
+        <div style={{ justifyContent: 'center', alignItems: 'center', padding: 10, display: 'inline-block', width: '25%', textAlign: 'center' }}>
+            <img onClick={() => props.increaseScore()} style={{ cursor: 'pointer' }} alt={props.id} src={props.url} />
         </div>
 
 
