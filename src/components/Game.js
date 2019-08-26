@@ -11,12 +11,12 @@ class Game extends Component {
     render() {
         return (
             // Will need key, id, click function, and images 
-            <div>
-                <CardContainer>
+            <div style={{display: 'flex', flexDirection: 'row', justifyContent:'center', alignItems:'center', textAlign: 'center'}}>
+                <CardContainer style={{display: 'inherit'}}>
                     {
                         this.state.CardData.map(item => {
                             console.log(item);
-                            return <Cards key={item.id} id={item.id} url={item.url} />
+                            return <Cards key={item.id} id={item.id} url={item.url}  />
                         })
                     }
                 </CardContainer>
