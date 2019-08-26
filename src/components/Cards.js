@@ -3,7 +3,7 @@ import React from "react";
 
 function Cards(props) {
     return (
-        <div style={{justifyContent:'center', alignItems: 'center', padding: 20}}>
+        <div style={{justifyContent:'center', alignItems: 'center', padding: 20, display: 'inline-block', width: '25%', textAlign: 'center'}}>
             <img alt={props.id} src={props.url} />
         </div>
 

@@ -11,7 +11,7 @@ class Game extends Component {
     render() {
         return (
             // Will need key, id, click function, and images 
-            <div style={{display: 'flex', flexDirection: 'row', justifyContent:'center', alignItems:'center', textAlign: 'center'}}>
+            //<div style={{display: 'flex', flexDirection: 'row', justifyContent:'center', alignItems:'center', textAlign: 'center'}}>
                 <CardContainer style={{display: 'inherit'}}>
                     {
                         this.state.CardData.map(item => {
@@ -20,7 +20,7 @@ class Game extends Component {
                         })
                     }
                 </CardContainer>
-            </div>
+            //</div>
         )
     }
 }
