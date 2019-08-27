@@ -22,14 +22,22 @@ class Game extends Component {
             if (newItem.id === id) {
                 if (newItem.clicked === false) {
                     newItem.clicked = true;
+                    this.shuffleCards();
                 }
             }
             // console.log(this.state.CardData)
             console.log(newItem)
             console.log(id)
-            return newItem;
+            this.shuffleCards()
+            return newItem
         });
-    }
+    };
+
+    shuffleCards = () => {
+        const { CardData } = this.state;
+        CardData.sort(() => Math.random() - 0.5)
+        this.setState({ count: this.state.count + 1 });
+}
 
     // winGame = id => {}
 
@@ -53,8 +61,9 @@ class Game extends Component {
                                 id={item.id}
                                 url={item.url}
                                 loseGame={this.loseGame}
+                                shuffleCards={this.shuffleCards}
                             />
-                        ))}
+                        ))
                     }
                 </CardContainer>
             </div>

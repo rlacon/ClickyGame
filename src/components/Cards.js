@@ -9,7 +9,7 @@ function Cards(props) {
                 src={props.url}
                 onClick={() => {
                     props.loseGame(props.id)
-                    props.increaseScore()
+                    // props.increaseScore()
                 }}
             />
         </div>
