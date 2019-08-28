@@ -18,30 +18,32 @@ class Game extends Component {
 
     // Causes the state of the CardData object to flip from false to true
     loseGame = id => {
-        this.state.CardData.map(item => {
-            const newItem = { ...item };
-            if (newItem.id === id) {
-                if (newItem.clicked === false) {
-                    newItem.clicked = true;
-                    this.shuffleCards();
+        const CardData = this.state.CardData.map(item => {
+            if (item.id === id) {
+                if (item.clicked === false) {
+                    item.clicked = true;
                 }
-                else {
-                    alert("You lose!")
-                    this.setState({ count: 0 });
-                }
+                // else {
+                //     alert("You lose!")
+                //     this.setState({ count: 0 });
+                // }
             }
             // console.log(this.state.CardData)
-            console.log(newItem)
+            //console.log(newItem)
             // console.log(id)
-            this.shuffleCards()
-            return newItem
+            return item;
         });
+        this.setState({ CardData });
+        this.shuffleCards();
+        console.log(CardData, this.state.CardData)
     };
 
     shuffleCards = () => {
-        const { CardData } = this.state;
+        const CardData = this.state.CardData;
         CardData.sort(() => Math.random() - 0.5)
         this.setState({ count: this.state.count + 1 });
+        this.setState({ CardData });
+        console.log(CardData, this.state.CardData)
     }
 
     // winGame = id => {}
