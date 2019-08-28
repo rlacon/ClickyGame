@@ -9,27 +9,51 @@ class Game extends Component {
     state = {
         CardData,
         count: 0,
-        clicked: [],
+        topCount: 0,
     }
 
+    // Increases current score and matches the value of high score if it's greater than or equal to it
     increaseScore = () => {
         this.setState({ count: this.state.count + 1 });
+        const { count, topCount } = this.state;
+        const highScore = count + 1;
+
+        this.setState({ count: highScore });
+
+        console.log(highScore)
+        if (highScore >= topCount) {
+            this.setState({ topCount: highScore });
+        }
+        else if (count === 12) {
+            console.log("You win!");
+        }
     };
 
-    // Causes the state of the CardData object to flip from false to true
+    resetGame = () => {
+        this.state.CardData.map(item => {
+            if (item.clicked === true) {
+                item.clicked = false;
+            }
+            return item;
+        })
+        this.setState({ count: 0 });
+    };
+
+    // Causes the state of the CardData object to flip from false to true and runs resetGame if true is clicked 
     loseGame = id => {
+        this.increaseScore();
         const CardData = this.state.CardData.map(item => {
             if (item.id === id) {
                 if (item.clicked === false) {
                     item.clicked = true;
                 }
-                // else {
-                //     alert("You lose!")
-                //     this.setState({ count: 0 });
-                // }
+                else {
+                    alert("You lose!")
+                    this.resetGame();
+                }
             }
             // console.log(this.state.CardData)
-            //console.log(newItem)
+            // console.log(newItem)
             // console.log(id)
             return item;
         });
@@ -41,21 +65,17 @@ class Game extends Component {
     shuffleCards = () => {
         const CardData = this.state.CardData;
         CardData.sort(() => Math.random() - 0.5)
-        this.setState({ count: this.state.count + 1 });
         this.setState({ CardData });
         console.log(CardData, this.state.CardData)
     }
 
-    // winGame = id => {}
-
-    // Need a function to shuffle the cards, if the user won or lost after every card click, reset the game after the user loses
     render(props) {
         return (
             <div>
                 <Jumbotron />
                 <nav className="navbar navbar-light bg-light">
                     <p id="score-text">Current Score: {this.state.count}</p>
-                    <p id="top-score-text">High Score: 0</p>
+                    <p id="top-score-text">High Score: {this.state.topCount}</p>
                 </nav>
                 <CardContainer>
                     {
@@ -63,12 +83,10 @@ class Game extends Component {
                             // (Parantheses not needed if rendering an object)
                             <Cards
                                 style={{ cursor: 'pointer' }}
-                                increaseScore={this.increaseScore}
                                 key={item.id}
                                 id={item.id}
                                 url={item.url}
                                 loseGame={this.loseGame}
-                                shuffleCards={this.shuffleCards}
                             />
                         ))
                     }
