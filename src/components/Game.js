@@ -8,7 +8,8 @@ class Game extends Component {
 
     state = {
         CardData,
-        count: 0
+        count: 0,
+        clicked: [],
     }
 
     increaseScore = () => {
@@ -24,10 +25,14 @@ class Game extends Component {
                     newItem.clicked = true;
                     this.shuffleCards();
                 }
+                else {
+                    alert("You lose!")
+                    this.setState({ count: 0 });
+                }
             }
             // console.log(this.state.CardData)
             console.log(newItem)
-            console.log(id)
+            // console.log(id)
             this.shuffleCards()
             return newItem
         });
@@ -37,7 +42,7 @@ class Game extends Component {
         const { CardData } = this.state;
         CardData.sort(() => Math.random() - 0.5)
         this.setState({ count: this.state.count + 1 });
-}
+    }
 
     // winGame = id => {}
 
