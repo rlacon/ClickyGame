@@ -52,14 +52,10 @@ class Game extends Component {
                     this.resetGame();
                 }
             }
-            // console.log(this.state.CardData)
-            // console.log(newItem)
-            // console.log(id)
             return item;
         });
         this.setState({ CardData });
         this.shuffleCards();
-        console.log(CardData, this.state.CardData)
     };
 
     shuffleCards = () => {
