@@ -12,7 +12,6 @@ class Game extends Component {
       count: 0,
       topCount: 0
     };
-    this.resetCounter = this.resetCounter.bind(this);
   }
 
   // Increases current score and matches the value of high score if it's greater than or equal to it
@@ -26,19 +25,14 @@ class Game extends Component {
         this.setState({ topCount: this.state.count });
         if (this.state.count === 12) {
           winSoundEffect.play();
-          alert("You win!");
           this.resetGame();
         }
       }
     }.bind(this));
   }
 
-  resetCounter() {
-    this.setState({ count: 0 });
-  }
-
   resetGame = () => {
-    this.resetCounter();
+    this.setState({ count: 0 });
     this.state.CardData.map(item => {
       if (item.alreadyClicked === true) {
         item.alreadyClicked = false;
@@ -62,7 +56,6 @@ class Game extends Component {
           item.alreadyClicked = true;
         } else {
           loseSoundEffect.play();
-          alert("You lose!");
           this.resetGame();
         }
       }
@@ -78,15 +71,24 @@ class Game extends Component {
     this.setState({ CardData });
   }
 
-  render(props) {
+  render() {
     return (
-      <div style={{ textAlign: 'center' }}>
+      <div
+        style={{ textAlign: 'center' }}>
         <Jumbotron />
-        <nav className="navbar navbar-light bg-light">
-          <p style={{ margin: 'auto', textAlign: 'center', fontFamily: 'FOT-Seurat-Pro-B' }} id="score-text">Current Score: {this.state.count}</p>
-          <br />
-          <p style={{ margin: 'auto', textAlign: 'center' }} id="top-score-text">High Score: {this.state.topCount}</p>
-        </nav>
+        <div className="score_container">
+          <div className="score_counter">
+            <p>
+              Current Score: {this.state.count}
+            </p>
+          </div>
+          <div class="vertLine">|</div>
+          <div className="high_score_counter">
+            <p>
+              High Score: {this.state.topCount}
+            </p>
+          </div>
+        </div>
         <CardContainer>
           {
             this.state.CardData.map(item => (
@@ -95,8 +97,7 @@ class Game extends Component {
                 key={item.id}
                 id={item.id}
                 url={item.url}
-                loseGame={this.loseGame}
-              />
+                loseGame={this.loseGame} />
             ))
           }
         </CardContainer>

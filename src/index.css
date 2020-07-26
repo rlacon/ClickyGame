@@ -9,18 +9,52 @@ body {
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   background-image: url("/images/animalcrossing_bg_grass.jpg");
+  font-family: 'Fredoka One', cursive;
+}
+
+.logo {
+  margin-top: 20px;
 }
 
 code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New', monospace;
 }
 
+.score_container {
+  width: 100%;
+  overflow: auto;
+  display: flex;
+}
+
+.score_counter {
+  width: 49%;
+  margin: auto;
+  float: right;
+  text-align: right;
+  padding-right: 10px;
+}
+
+.high_score_counter {
+  width: 49%;
+  margin: auto;
+  float: left;
+  text-align: left;
+  padding-left: 10px;
+}
+
+.vertLine {
+  margin: auto;
+  padding-bottom: 3px;
+  color: #4f2b13;
+}
+
 h1 {
-  font-family: FOT-Seurat-Pro-B;
+  font-family: 'Fredoka One', cursive;
 }
 
 .img {
   box-shadow: 0px 3px 15px rgba(0, 0, 0, 0.2);
+  border-radius: 25px;
 }
 
 .card {
