@@ -1,62 +1,62 @@
 [
     {
         "id": 1,
-        "url": "images/doge.png",
+        "url": "images/apollo.jpg",
         "alreadyClicked": false
     },
     {
         "id": 2,
-        "url": "images/swole_doge.jpg",
+        "url": "images/bob.jpg",
         "alreadyClicked": false
     },
     {
         "id": 3,
-        "url": "images/astro_doge.jpg",
+        "url": "images/coco.jpg",
         "alreadyClicked": false
     },
     {
         "id": 4,
-        "url": "images/business_doge.jpeg",
+        "url": "images/drift.jpg",
         "alreadyClicked": false
     },
     {
         "id": 5,
-        "url": "images/fancy_doge.jpeg",
+        "url": "images/jay.jpg",
         "alreadyClicked": false
     },
     {
         "id": 6,
-        "url": "images/Hydraulic_Doge.jpg",
+        "url": "images/julian.jpg",
         "alreadyClicked": false
     },
     {
         "id": 7,
-        "url": "images/simba_doge.jpg",
+        "url": "images/lobo.jpg",
         "alreadyClicked": false
     },
     {
         "id": 8,
-        "url": "images/stupid_doge.jpeg",
+        "url": "images/lucky.jpg",
         "alreadyClicked": false
     },
     {
         "id": 9,
-        "url": "images/support_doge.jpg",
+        "url": "images/marina.jpg",
         "alreadyClicked": false
     },
     {
         "id": 10,
-        "url": "images/doge_coin.jpg",
+        "url": "images/scoot.jpg",
         "alreadyClicked": false
     },
     {
         "id": 11,
-        "url": "images/doge_bread.jpg",
+        "url": "images/static.jpg",
         "alreadyClicked": false
     },
     {
         "id": 12,
-        "url": "images/cool_doge.jpg",
+        "url": "images/teddy.jpg",
         "alreadyClicked": false
     }
 ]
