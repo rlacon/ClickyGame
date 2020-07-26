@@ -1,62 +1,62 @@
 [
     {
         "id": 1,
-        "url": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTq4RZzVWiOXDAfwwegbn2WiK10kY6fflXHQAgymvmf2YhUk32L",
-        "clicked": false
+        "url": "images/doge.png",
+        "alreadyClicked": false
     },
     {
         "id": 2,
-        "url": "http://placehold.jp/170x170.png",
-        "clicked": false
+        "url": "images/swole_doge.jpg",
+        "alreadyClicked": false
     },
     {
         "id": 3,
-        "url": "http://placehold.jp/170x170.png",
-        "clicked": false
+        "url": "images/astro_doge.jpg",
+        "alreadyClicked": false
     },
     {
         "id": 4,
-        "url": "http://placehold.jp/170x170.png",
-        "clicked": false
+        "url": "images/business_doge.jpeg",
+        "alreadyClicked": false
     },
     {
         "id": 5,
-        "url": "http://placehold.jp/170x170.png",
-        "clicked": false
+        "url": "images/fancy_doge.jpeg",
+        "alreadyClicked": false
     },
     {
         "id": 6,
-        "url": "http://placehold.jp/170x170.png",
-        "clicked": false
+        "url": "images/Hydraulic_Doge.jpg",
+        "alreadyClicked": false
     },
     {
         "id": 7,
-        "url": "http://placehold.jp/170x170.png",
-        "clicked": false
+        "url": "images/simba_doge.jpg",
+        "alreadyClicked": false
     },
     {
         "id": 8,
-        "url": "http://placehold.jp/170x170.png",
-        "clicked": false
+        "url": "images/stupid_doge.jpeg",
+        "alreadyClicked": false
     },
     {
         "id": 9,
-        "url": "http://placehold.jp/170x170.png",
-        "clicked": false
+        "url": "images/support_doge.jpg",
+        "alreadyClicked": false
     },
     {
         "id": 10,
-        "url": "http://placehold.jp/170x170.png",
-        "clicked": false
+        "url": "images/doge_coin.jpg",
+        "alreadyClicked": false
     },
     {
         "id": 11,
-        "url": "http://placehold.jp/170x170.png",
-        "clicked": false
+        "url": "images/doge_bread.jpg",
+        "alreadyClicked": false
     },
     {
         "id": 12,
-        "url": "http://placehold.jp/170x170.png",
-        "clicked": false
+        "url": "images/cool_doge.jpg",
+        "alreadyClicked": false
     }
 ]
