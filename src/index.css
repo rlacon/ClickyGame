@@ -64,3 +64,32 @@ h1 {
 .card:hover {
   transform: scale(1.1);
 }
+
+.plus_score {
+  visibility: hidden;
+  padding-right: 10px;
+}
+
+.plus_score-added.hide-opacity{
+  opacity: 0;
+}
+
+.plus_score-added {
+  color: #FFFFFF;
+  text-align: center;
+
+  -webkit-transition: opacity 1s ease-in-out;
+  -moz-transition: opacity 1s ease-in-out;
+  -ms-transition: opacity 1s ease-in-out;
+  -o-transition: opacity 1s ease-in-out;
+   opacity: 1;
+}
+
+.fade-out{
+  opacity:0;
+  transition: width 0.5s 0.5s, height 0.5s 0.5s, opacity 0.5s;
+}
+
+.fade-in{
+  opacity:1;
+}

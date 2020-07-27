@@ -1,4 +1,4 @@
-import React, { Component } from "react";
+import React, { Component, useState } from "react";
 import CardContainer from "./CardContainer";
 import Cards from "./Cards";
 import CardData from "../CardData.json";
@@ -10,7 +10,11 @@ class Game extends Component {
     this.state = {
       CardData,
       count: 0,
-      topCount: 0
+      topCount: 0,
+      fadeIn: false,
+      visible: false,
+      resetScore: false,
+      minusPoints: 0
     };
   }
 
@@ -53,9 +57,14 @@ class Game extends Component {
       if (item.id === clickedId) {
         if (item.alreadyClicked === false) {
           clickSoundEffect.play();
+          this.setState({ visible: true });
+          setTimeout(this.fadeOut, 500);
           item.alreadyClicked = true;
         } else {
           loseSoundEffect.play();
+          this.setState({ resetScore: true });
+          this.setState({ minusPoints: this.state.count });
+          setTimeout(this.resetScore, 500);
           this.resetGame();
         }
       }
@@ -63,6 +72,15 @@ class Game extends Component {
     });
     this.setState({ CardData });
     this.shuffleCards();
+  }
+
+  fadeOut = () => {
+    this.setState({ visible: false });
+  }
+
+  resetScore = (score) => {
+    debugger;
+    this.setState({ resetScore: false });
   }
 
   shuffleCards = () => {
@@ -77,12 +95,27 @@ class Game extends Component {
         style={{ textAlign: 'center' }}>
         <Jumbotron />
         <div className="score_container">
+          {/* Score */}
           <div className="score_counter">
             <p>
               Current Score: {this.state.count}
             </p>
           </div>
-          <div class="vertLine">|</div>
+
+          {/* Point Meter */}
+          <div className="fade-in">
+            <div className={this.state.visible ? 'fade-in' : 'fade-out'}>
+              <p style={{ paddingRight: '10px', color: '#0000E0' }}>+1</p>
+            </div>
+          </div>
+          <div className="fade-in">
+            <div className={this.state.resetScore ? 'fade-in' : 'fade-out'}>
+              <p style={{ paddingRight: '10px', color: '#8B0000' }}>-{this.state.minusPoints}</p>
+            </div>
+          </div>
+
+          {/* High Score */}
+          <div className="vertLine">|</div>
           <div className="high_score_counter">
             <p>
               High Score: {this.state.topCount}
@@ -101,8 +134,8 @@ class Game extends Component {
             ))
           }
         </CardContainer>
-      </div>
-    )
+      </div >
+    );
   }
 }
 
