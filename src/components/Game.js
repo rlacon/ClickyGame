@@ -14,7 +14,8 @@ class Game extends Component {
       fadeIn: false,
       visible: false,
       resetScore: false,
-      pointsToSubtract: 0
+      pointsToSubtract: 0,
+      shake: false
     };
   }
 
@@ -50,7 +51,7 @@ class Game extends Component {
   loseGame = clickedId => {
     let clickSoundEffect = new Audio("/coin_effect.mp3");
     let loseSoundEffect = new Audio("/lose.mp3");
-
+    // this.setState({ shake: true });
     this.increaseScore();
 
     this.state.CardData.map(item => {
@@ -63,6 +64,7 @@ class Game extends Component {
         } else {
           loseSoundEffect.play();
           this.setState({ resetScore: true });
+          this.setState({ shake: true });
           this.setState({ pointsToSubtract: this.state.count });
           setTimeout(this.hideMinusScore, 500);
           this.resetGame();
@@ -80,6 +82,7 @@ class Game extends Component {
 
   hideMinusScore = () => {
     this.setState({ resetScore: false });
+    this.setState({ shake: false });
   }
 
   shuffleCards = () => {
@@ -116,18 +119,21 @@ class Game extends Component {
             <p>High Score: {this.state.topCount}</p>
           </div>
         </div>
-        <CardContainer>
-          {
-            this.state.CardData.map(item => (
-              <Cards
-                style={{ cursor: 'pointer' }}
-                key={item.id}
-                id={item.id}
-                url={item.url}
-                loseGame={this.loseGame} />
-            ))
-          }
-        </CardContainer>
+        <div className={this.state.shake ? 'card-shake' : ''}>
+          <CardContainer>
+            {
+              this.state.CardData.map(item => (
+
+                <Cards
+                  style={{ cursor: 'pointer' }}
+                  key={item.id}
+                  id={item.id}
+                  url={item.url}
+                  loseGame={this.loseGame} />
+              ))
+            }
+          </CardContainer>
+          </div>
       </div >
     );
   }
