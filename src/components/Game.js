@@ -3,11 +3,14 @@ import CardContainer from "./CardContainer";
 import Cards from "./Cards";
 import CardData from "../CardData.json";
 import Jumbotron from "./Jumbotron";
+import Confetti from 'react-confetti'
 
 class Game extends Component {
   constructor(props) {
     super(props);
     this.state = {
+      windowWidth: window.innerWidth,
+      windowHeight: window.innerHeight,
       CardData,
       count: 0,
       topCount: 0,
@@ -15,8 +18,22 @@ class Game extends Component {
       visible: false,
       resetScore: false,
       pointsToSubtract: 0,
-      shake: false
+      shake: false,
+      stopConfetti: true
     };
+  }
+
+  handleResize = (e) => {
+    this.setState({ windowWidth: window.innerWidth });
+    this.setState({ windowHeight: window.innerHeight });
+  }
+
+  componentDidMount() {
+    window.addEventListener("resize", this.handleResize);
+  }
+
+  componentWillUnmount() {
+    window.addEventListener("resize", this.handleResize);
   }
 
   // Increases current score and matches the value of high score if it's greater than or equal to it
@@ -30,7 +47,9 @@ class Game extends Component {
         this.setState({ topCount: this.state.count });
         if (this.state.count === 12) {
           winSoundEffect.play();
+          this.setState({ stopConfetti: false });
           this.resetGame();
+          setTimeout(this.stopConfetti, 10000);
         }
       }
     }.bind(this));
@@ -51,7 +70,7 @@ class Game extends Component {
   loseGame = clickedId => {
     let clickSoundEffect = new Audio("/coin_effect.mp3");
     let loseSoundEffect = new Audio("/lose.mp3");
-    // this.setState({ shake: true });
+
     this.increaseScore();
 
     this.state.CardData.map(item => {
@@ -85,6 +104,10 @@ class Game extends Component {
     this.setState({ shake: false });
   }
 
+  stopConfetti = () => {
+    this.setState({ stopConfetti: true });
+  }
+
   shuffleCards = () => {
     const CardData = this.state.CardData;
     CardData.sort(() => Math.random() - 0.5);
@@ -93,48 +116,57 @@ class Game extends Component {
 
   render() {
     return (
-      <div
-        style={{ textAlign: 'center' }}>
-        <Jumbotron />
-        <div className="score_container">
-          {/* Score */}
-          <div className="score_counter">
-            <p>Current Score: {this.state.count}</p>
-          </div>
+      <>
+        <Confetti
+          width={this.state.windowWidth}
+          height={this.state.windowHeight}
+          recycle={false}
+          run={!this.state.stopConfetti}
+          numberOfPieces={500}
+        />
+        <div
+          style={{ textAlign: 'center' }}>
 
-          {/* Point Meter */}
-          <div className="fade-in">
-            <div className={this.state.visible ? 'fade-in' : 'fade-out'}>
-              <p style={{ paddingRight: '10px', color: '#0000E0' }}>+1</p>
+          <Jumbotron />
+          <div className="score_container">
+            {/* Score */}
+            <div className="score_counter">
+              <p>Current Score: {this.state.count}</p>
+            </div>
+
+            {/* Point Meter */}
+            <div className="fade-in">
+              <div className={this.state.visible ? 'fade-in' : 'fade-out'}>
+                <p style={{ paddingRight: '10px', color: '#0000E0' }}>+1</p>
+              </div>
+            </div>
+            <div className="fade-in">
+              <div className={this.state.resetScore ? 'fade-in' : 'fade-out'}>
+                <p style={{ paddingRight: '10px', color: '#8B0000' }}>-{this.state.pointsToSubtract}</p>
+              </div>
+            </div>
+
+            {/* High Score */}
+            <div className="high_score_counter">
+              <p>High Score: {this.state.topCount}</p>
             </div>
           </div>
-          <div className="fade-in">
-            <div className={this.state.resetScore ? 'fade-in' : 'fade-out'}>
-              <p style={{ paddingRight: '10px', color: '#8B0000' }}>-{this.state.pointsToSubtract}</p>
-            </div>
-          </div>
-
-          {/* High Score */}
-          <div className="high_score_counter">
-            <p>High Score: {this.state.topCount}</p>
+          <div className={this.state.shake ? 'card-shake' : ''}>
+            <CardContainer>
+              {
+                this.state.CardData.map(item => (
+                  <Cards
+                    style={{ cursor: 'pointer' }}
+                    key={item.id}
+                    id={item.id}
+                    url={item.url}
+                    loseGame={this.loseGame} />
+                ))
+              }
+            </CardContainer>
           </div>
         </div>
-        <div className={this.state.shake ? 'card-shake' : ''}>
-          <CardContainer>
-            {
-              this.state.CardData.map(item => (
-
-                <Cards
-                  style={{ cursor: 'pointer' }}
-                  key={item.id}
-                  id={item.id}
-                  url={item.url}
-                  loseGame={this.loseGame} />
-              ))
-            }
-          </CardContainer>
-          </div>
-      </div >
+      </>
     );
   }
 }
