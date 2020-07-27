@@ -14,7 +14,7 @@ class Game extends Component {
       fadeIn: false,
       visible: false,
       resetScore: false,
-      minusPoints: 0
+      pointsToSubtract: 0
     };
   }
 
@@ -58,13 +58,13 @@ class Game extends Component {
         if (item.alreadyClicked === false) {
           clickSoundEffect.play();
           this.setState({ visible: true });
-          setTimeout(this.fadeOut, 500);
+          setTimeout(this.hidePlusScore, 500);
           item.alreadyClicked = true;
         } else {
           loseSoundEffect.play();
           this.setState({ resetScore: true });
-          this.setState({ minusPoints: this.state.count });
-          setTimeout(this.resetScore, 500);
+          this.setState({ pointsToSubtract: this.state.count });
+          setTimeout(this.hideMinusScore, 500);
           this.resetGame();
         }
       }
@@ -74,12 +74,11 @@ class Game extends Component {
     this.shuffleCards();
   }
 
-  fadeOut = () => {
+  hidePlusScore = () => {
     this.setState({ visible: false });
   }
 
-  resetScore = (score) => {
-    debugger;
+  hideMinusScore = () => {
     this.setState({ resetScore: false });
   }
 
@@ -97,9 +96,7 @@ class Game extends Component {
         <div className="score_container">
           {/* Score */}
           <div className="score_counter">
-            <p>
-              Current Score: {this.state.count}
-            </p>
+            <p>Current Score: {this.state.count}</p>
           </div>
 
           {/* Point Meter */}
@@ -110,16 +107,14 @@ class Game extends Component {
           </div>
           <div className="fade-in">
             <div className={this.state.resetScore ? 'fade-in' : 'fade-out'}>
-              <p style={{ paddingRight: '10px', color: '#8B0000' }}>-{this.state.minusPoints}</p>
+              <p style={{ paddingRight: '10px', color: '#8B0000' }}>-{this.state.pointsToSubtract}</p>
             </div>
           </div>
 
           {/* High Score */}
           <div className="vertLine">|</div>
           <div className="high_score_counter">
-            <p>
-              High Score: {this.state.topCount}
-            </p>
+            <p>High Score: {this.state.topCount}</p>
           </div>
         </div>
         <CardContainer>
