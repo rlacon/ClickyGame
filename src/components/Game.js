@@ -1,4 +1,4 @@
-import React, { Component, useState } from "react";
+import React, { Component } from "react";
 import CardContainer from "./CardContainer";
 import Cards from "./Cards";
 import CardData from "../CardData.json";
@@ -112,7 +112,6 @@ class Game extends Component {
           </div>
 
           {/* High Score */}
-          <div className="vertLine">|</div>
           <div className="high_score_counter">
             <p>High Score: {this.state.topCount}</p>
           </div>
