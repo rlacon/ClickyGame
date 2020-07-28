@@ -3,7 +3,6 @@ import ReactDOM from 'react-dom';
 import './index.css';
 import App from './App';
 import * as serviceWorker from './serviceWorker';
-import './fonts/FOT-Seurat-Pro-B.woff'
 
 ReactDOM.render(
   <React.StrictMode>
