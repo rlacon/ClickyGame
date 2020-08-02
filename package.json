@@ -1,9 +1,8 @@
 {
   "name": "clicky-game",
   "version": "0.1.0",
-  "engines": {
-    "node": "12.x"
-  },
+  "description": "Clicky Game",
+  "private": true,
   "dependencies": {
     "@testing-library/jest-dom": "^4.2.4",
     "@testing-library/react": "^9.3.2",
@@ -16,7 +15,7 @@
     "react-scripts": "3.4.1"
   },
   "scripts": {
-    "start": "node index.js",
+    "start": "react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test",
     "eject": "react-scripts eject"
