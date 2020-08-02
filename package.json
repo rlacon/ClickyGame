@@ -15,8 +15,10 @@
     "react-scripts": "3.4.1"
   },
   "scripts": {
-    "start": "react-scripts start",
-    "build": "react-scripts build",
+    "start": "node server.js",
+    "heroku-postbuild": "npm run build-dev",
+    "start-dev": "react-scripts start",
+    "build-dev": "react-scripts build",
     "test": "react-scripts test",
     "eject": "react-scripts eject"
   },
